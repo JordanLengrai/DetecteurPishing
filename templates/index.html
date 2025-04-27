@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Détecteur de Phishing</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="main-bg">
+        <div class="container card">
+            <div class="header-icon">
+                <span style="font-size:2.3em;">🛡️</span>
+            </div>
+            <h1>Détecteur de Phishing</h1>
+            <p class="desc">Colle une URL ou un email à analyser :</p>
+            <div class="input-group">
+                <input type="text" id="input-url" placeholder="https://exemple.com ou email...">
+                <button id="analyze-btn">Analyser</button>
+            </div>
+            <div id="result" class="result-card"></div>
+        </div>
+        <footer>
+            <span>by Jordan Lengrai</span>
+        </footer>
+    </div>
+    <script src="/static/main.js"></script>
+</body>
+</html>
