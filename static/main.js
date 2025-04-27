@@ -15,7 +15,10 @@ document.getElementById('analyze-btn').onclick = async function() {
             body: JSON.stringify({url})
         });
         const data = await res.json();
-        if (data.phishing) {
+        if (!res.ok && data.error) {
+            resultDiv.innerHTML = '<span style="font-size:1.4em;">⚠️</span> ' + data.error;
+            resultDiv.className = 'result-card phishing';
+        } else if (data.phishing) {
             resultDiv.innerHTML = '<span style="font-size:1.7em;">🔴</span> <span><b>Attention</b> : ' + data.reason + '</span>';
             resultDiv.className = 'result-card phishing';
         } else {

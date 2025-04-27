@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, send_from_directory, request, jsonify
 import re
 import requests
 
@@ -28,12 +28,17 @@ def detect_phishing(url):
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return send_from_directory('.', 'index.html')
+
+import urllib.parse
 
 @app.route('/analyze', methods=['POST'])
 def analyze():
     data = request.json
     url = data.get('url', '')
+    # Vérification que c'est bien une URL (commence par http:// ou https://)
+    if not (url.startswith('http://') or url.startswith('https://')):
+        return jsonify({'error': 'Merci de fournir une URL commençant par http:// ou https://'}), 400
     is_phish, reason = detect_phishing(url)
     return jsonify({'phishing': is_phish, 'reason': reason})
 
